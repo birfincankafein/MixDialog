@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="dialog_padding">16dp</dimen>
+    <dimen name="height_title_line">0.5dp</dimen>
+    <dimen name="margin_top_title_line">1dp</dimen>
+    <dimen name="margin_end_title_line">50dp</dimen>
+    <dimen name="margin_top_groups">5dp</dimen>
+    <dimen name="margin_top_group">2dp</dimen>
+    <dimen name="margin_top_group_items">2dp</dimen>
+</resources>
