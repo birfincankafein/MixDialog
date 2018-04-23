@@ -77,6 +77,7 @@ public class MainActivity extends AppCompatActivity {
 
                 })
                 .build();
+        mixDialog.create();
         mixDialog.show();
     }
     private void createAndShowInputDialog() {
@@ -120,6 +121,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 })
                 .build();
+        mixDialog.create();
         mixDialog.show();
     }
     private void createAndShowInputHeaderDialog() {
@@ -140,8 +142,8 @@ public class MainActivity extends AppCompatActivity {
                     public boolean onDialogButtonClick(MixDialog.ButtonType buttonType, MixDialog dialog) {
                         boolean retVal = true;
                         if(buttonType.equals(MixDialog.ButtonType.POSITIVE)) {
-                            InputItem inputItem1 = dialog.getInputItem("InputGroup", "Input 1");
-                            InputItem inputItem2 = dialog.getInputItem("InputGroup", "Input 2");
+                            InputItem inputItem1 = dialog.getInputItem("Input Group", "Input 1");
+                            InputItem inputItem2 = dialog.getInputItem("Input Group", "Input 2");
                             if (inputItem1 != null){
                                 if(inputItem1.getValue().isEmpty()) {
                                     inputItem1.setError("Input 1 cannot be empty!");
@@ -165,6 +167,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 })
                 .build();
+        mixDialog.create();
         mixDialog.show();
     }
     private void createAndShowSingleDialog() {
@@ -210,6 +213,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 })
                 .build();
+        mixDialog.create();
         mixDialog.show();
     }
     private void createAndShowSingleHeaderDialog() {
@@ -256,6 +260,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 })
                 .build();
+        mixDialog.create();
         mixDialog.show();
     }
     private void createAndShowMultiDialog() {
@@ -302,6 +307,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 })
                 .build();
+        mixDialog.create();
         mixDialog.show();
     }
     private void createAndShowMultiHeaderDialog() {
@@ -349,6 +355,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 })
                 .build();
+        mixDialog.create();
         mixDialog.show();
     }
     private void createAndShowMixDialog() {
@@ -364,10 +371,6 @@ public class MainActivity extends AppCompatActivity {
                 .addInputItemGroup("Input Group 2")
                     .addInputItem("Input 2-1")
                     .addInputItem("Input 2-2", "Default Value 2-2")
-                    .buildWithParent()
-                .addInputItemGroup("Input Group 3")
-                    .addInputItem("Input 3-1")
-                    .addInputItem("Input 3-2", "Default Value 3-2")
                     .buildWithParent()
                 .addCheckItemGroup("Single Check Group 1")
                     .setSingleChoice(true)
@@ -390,19 +393,6 @@ public class MainActivity extends AppCompatActivity {
                         @Override
                         public void onCheckChange(CheckItem checkItem, boolean isChecked) {
                             Toast.makeText(getApplicationContext(), "Single Check Group 2: " + checkItem.getText() + " isChecked: " + checkItem.isChecked(), Toast.LENGTH_SHORT).show();
-                        }
-                    })
-                    .buildWithParent()
-
-                .addCheckItemGroup("Single Check Group 3")
-                    .setSingleChoice(true)
-                    .addItem("Item 3-1")
-                    .addItem("Item 3-2", true)
-                    .addItem("Item 3-3", false)
-                    .setOnCheckChangeListener(new CheckItemGroup.onCheckChangeListener() {
-                        @Override
-                        public void onCheckChange(CheckItem checkItem, boolean isChecked) {
-                            Toast.makeText(getApplicationContext(), "Single Check Group 3: " + checkItem.getText() + " isChecked: " + checkItem.isChecked(), Toast.LENGTH_SHORT).show();
                         }
                     })
                     .buildWithParent()
@@ -430,18 +420,6 @@ public class MainActivity extends AppCompatActivity {
                         }
                     })
                     .buildWithParent()
-                .addCheckItemGroup("Multi Check Group 3")
-                    .setSingleChoice(false)
-                    .addItem("Item 3-1")
-                    .addItem("Item 3-2", true)
-                    .addItem("Item 3-3", true)
-                    .setOnCheckChangeListener(new CheckItemGroup.onCheckChangeListener() {
-                        @Override
-                        public void onCheckChange(CheckItem checkItem, boolean isChecked) {
-                            Toast.makeText(getApplicationContext(), "Multi Check Group 3: " + checkItem.getText() + " isChecked: " + checkItem.isChecked(), Toast.LENGTH_SHORT).show();
-                        }
-                    })
-                    .buildWithParent()
                 .setCancelable(false)
                 .setOnDialogEventListener(new MixDialog.onDialogEventListener() {
                     @Override
@@ -450,6 +428,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 })
                 .build();
+        mixDialog.create();
         mixDialog.show();
     }
     private void createAndShowMixHeaderDialog() {
@@ -468,11 +447,6 @@ public class MainActivity extends AppCompatActivity {
                     .addInputItem("Input 2-2", "Default Value 2-2")
                     .setShowGroupNameAsHeader(true)
                     .buildWithParent()
-                .addInputItemGroup("Input Group 3")
-                    .addInputItem("Input 3-1")
-                    .addInputItem("Input 3-2", "Default Value 3-2")
-                    .setShowGroupNameAsHeader(true)
-                    .buildWithParent()
                 .addCheckItemGroup("Single Check Group 1")
                     .setSingleChoice(true)
                     .setShowGroupNameAsHeader(true)
@@ -496,19 +470,6 @@ public class MainActivity extends AppCompatActivity {
                         @Override
                         public void onCheckChange(CheckItem checkItem, boolean isChecked) {
                             Toast.makeText(getApplicationContext(), "Single Check Group 2: " + checkItem.getText() + " isChecked: " + checkItem.isChecked(), Toast.LENGTH_SHORT).show();
-                        }
-                    })
-                    .buildWithParent()
-                .addCheckItemGroup("Single Check Group 3")
-                    .setSingleChoice(true)
-                    .setShowGroupNameAsHeader(true)
-                    .addItem("Item 3-1")
-                    .addItem("Item 3-2", true)
-                    .addItem("Item 3-3", false)
-                    .setOnCheckChangeListener(new CheckItemGroup.onCheckChangeListener() {
-                        @Override
-                        public void onCheckChange(CheckItem checkItem, boolean isChecked) {
-                            Toast.makeText(getApplicationContext(), "Single Check Group 3: " + checkItem.getText() + " isChecked: " + checkItem.isChecked(), Toast.LENGTH_SHORT).show();
                         }
                     })
                     .buildWithParent()
@@ -538,19 +499,6 @@ public class MainActivity extends AppCompatActivity {
                         }
                     })
                     .buildWithParent()
-                .addCheckItemGroup("Multi Check Group 3")
-                    .setSingleChoice(false)
-                    .setShowGroupNameAsHeader(true)
-                    .addItem("Item 3-1")
-                    .addItem("Item 3-2", true)
-                    .addItem("Item 3-3", true)
-                    .setOnCheckChangeListener(new CheckItemGroup.onCheckChangeListener() {
-                        @Override
-                        public void onCheckChange(CheckItem checkItem, boolean isChecked) {
-                            Toast.makeText(getApplicationContext(), "Multi Check Group 3: " + checkItem.getText() + " isChecked: " + checkItem.isChecked(), Toast.LENGTH_SHORT).show();
-                        }
-                    })
-                    .buildWithParent()
                 .setCancelable(false)
                 .setOnDialogEventListener(new MixDialog.onDialogEventListener() {
                     @Override
@@ -559,6 +507,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 })
                 .build();
+        mixDialog.create();
         mixDialog.show();
     }
 
