@@ -1,5 +1,5 @@
   
-[![Release](https://img.shields.io/badge/release-1.0.0-blue.svg?style=flat)](https://bintray.com/birfincankafein/com.birfincankafein/mixdialog/_latestVersion)  [![API](https://img.shields.io/badge/API-14+-green.svg?style=flat)]()  
+[![Release](https://img.shields.io/badge/release-1.0.1-blue.svg?style=flat)](https://bintray.com/birfincankafein/com.birfincankafein/mixdialog/_latestVersion)  [![API](https://img.shields.io/badge/API-14+-green.svg?style=flat)]()
   
 What is MixDialog? 
 ------------     
