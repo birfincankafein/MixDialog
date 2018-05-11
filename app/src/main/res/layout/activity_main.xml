@@ -21,7 +21,7 @@
                 android:paddingLeft="15dp"
                 android:paddingRight="15dp"
                 android:id="@+id/button_basic"
-                android:text="Basic Mix Dialog"/>
+                android:text="@string/button_basicdialog"/>
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -30,7 +30,7 @@
                 android:paddingLeft="15dp"
                 android:paddingRight="15dp"
                 android:id="@+id/button_input"
-                android:text="Mix Dialog With InputGroup"/>
+                android:text="@string/button_inputgroup"/>
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -39,7 +39,7 @@
                 android:paddingLeft="15dp"
                 android:paddingRight="15dp"
                 android:id="@+id/button_input_header"
-                android:text="Mix Dialog With InputGroup Header"/>
+                android:text="@string/button_inputgroup_header"/>
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -48,7 +48,7 @@
                 android:paddingLeft="15dp"
                 android:paddingRight="15dp"
                 android:id="@+id/button_single"
-                android:text="Mix Dialog With Single Choice Group"/>
+                android:text="@string/button_single_checkitemgroup"/>
 
             <Button
                 android:layout_width="match_parent"
@@ -58,7 +58,7 @@
                 android:paddingLeft="15dp"
                 android:paddingRight="15dp"
                 android:id="@+id/button_single_header"
-                android:text="Mix Dialog With Single Choice Group Header"/>
+                android:text="@string/button_single_checkitemgroup_header"/>
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -67,7 +67,7 @@
                 android:paddingLeft="15dp"
                 android:paddingRight="15dp"
                 android:id="@+id/button_multi"
-                android:text="Mix Dialog With Multi Choice"/>
+                android:text="@string/button_multi_checkitemgroup"/>
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -76,7 +76,7 @@
                 android:paddingLeft="15dp"
                 android:paddingRight="15dp"
                 android:id="@+id/button_multi_header"
-                android:text="Mix Dialog With Multi Choice Header"/>
+                android:text="@string/button_multi_checkitemgroup_header"/>
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -85,7 +85,7 @@
                 android:paddingLeft="15dp"
                 android:paddingRight="15dp"
                 android:id="@+id/button_input_single_multi"
-                android:text="Mix Dialog With Input, Single and Multi Choice"/>
+                android:text="@string/button_inputgroup_checkitemgroup"/>
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -94,7 +94,7 @@
                 android:paddingLeft="15dp"
                 android:paddingRight="15dp"
                 android:id="@+id/button_input_single_multi_header"
-                android:text="Mix Dialog With Input, Single and Multi Choice Header"/>
+                android:text="@string/button_inputgroup_checkitemgroup_header"/>
         </LinearLayout>
     </ScrollView>
 </android.support.constraint.ConstraintLayout>

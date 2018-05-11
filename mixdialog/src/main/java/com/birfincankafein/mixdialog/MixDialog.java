@@ -607,9 +607,9 @@ public class MixDialog {
         public Builder addButton(ButtonType buttonType){
             switch (buttonType){
                 case POSITIVE:
-                    return setPositiveButtonText(R.string.dialog_button_positive);
+                    return setPositiveButtonText(android.R.string.ok);
                 case NEGATIVE:
-                    return setNegativeButtonText(R.string.dialog_button_negative);
+                    return setNegativeButtonText(android.R.string.cancel);
                 default:
                     return setNeutralButtonText(R.string.dialog_button_neutral);
             }

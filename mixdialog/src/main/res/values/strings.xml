@@ -1,5 +1,3 @@
 <resources>
-    <string name="dialog_button_positive">OK</string>
-    <string name="dialog_button_negative">CANCEL</string>
     <string name="dialog_button_neutral">&#032;</string>
 </resources>

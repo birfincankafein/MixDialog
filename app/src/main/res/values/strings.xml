@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">MixDialogDemo</string>
+    <string name="button_basicdialog">Basic Mix Dialog</string>
+    <string name="button_inputgroup">Mix Dialog With InputGroup</string>
+    <string name="button_inputgroup_header">Mix Dialog With InputGroup Header</string>
+    <string name="button_single_checkitemgroup">Mix Dialog With Single Choice Group</string>
+    <string name="button_single_checkitemgroup_header">Mix Dialog With Single Choice Group Header</string>
+    <string name="button_multi_checkitemgroup">Mix Dialog With Multi Choice</string>
+    <string name="button_multi_checkitemgroup_header">Mix Dialog With Multi Choice Header</string>
+    <string name="button_inputgroup_checkitemgroup">Mix Dialog With Input, Single and Multi Choice</string>
+    <string name="button_inputgroup_checkitemgroup_header">Mix Dialog With Input, Single and Multi Choice Header</string>
 </resources>
