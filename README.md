@@ -15,7 +15,7 @@ In order to use the library, there are 3 different options:
   -  Add this to your app `build.gradle`:  
  ```gradle  
 dependencies {  
-    implementation 'com.birfincankafein:mixdialog:1.0.0'
+    implementation 'com.birfincankafein:mixdialog:1.0.1'
 }  
 ```  
   
@@ -25,14 +25,14 @@ dependencies {
 <dependency>  
     <groupId>com.birfincankafein</groupId>
     <artifactId>mixdialog</artifactId> 
-    <version>1.0.0</version>
+    <version>1.0.1</version>
 </dependency>  
 ```  
   
 **3. Ivy**  
 - Add the following to the `<dependencies>` section of your `ivy.xml`:  
 ```xml  
-<dependency org='com.birfincankafein' name='mixdialog' rev='1.0.0'> <artifact name='mixdialog' ext='pom' /> </dependency>  
+<dependency org='com.birfincankafein' name='mixdialog' rev='1.0.1'> <artifact name='mixdialog' ext='pom' /> </dependency>  
 ```  
   
 How to Use  
