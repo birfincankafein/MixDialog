@@ -1,5 +1,5 @@
   
-[![Release](https://img.shields.io/badge/release-1.0.2-blue.svg?style=flat)](https://bintray.com/birfincankafein/com.birfincankafein/mixdialog/_latestVersion)  [![API](https://img.shields.io/badge/API-14+-green.svg?style=flat)]()
+[![Release](https://img.shields.io/badge/release-1.0.3-blue.svg?style=flat)](https://bintray.com/birfincankafein/com.birfincankafein/mixdialog/_latestVersion)  [![API](https://img.shields.io/badge/API-14+-green.svg?style=flat)]()
   
 What is MixDialog? 
 ------------     
@@ -15,7 +15,7 @@ In order to use the library, there are 3 different options:
   -  Add this to your app `build.gradle`:  
  ```gradle  
 dependencies {  
-    implementation 'com.birfincankafein:mixdialog:1.0.2'
+    implementation 'com.birfincankafein:mixdialog:1.0.3'
 }  
 ```  
   
@@ -25,14 +25,14 @@ dependencies {
 <dependency>  
     <groupId>com.birfincankafein</groupId>
     <artifactId>mixdialog</artifactId> 
-    <version>1.0.2</version>
+    <version>1.0.3</version>
 </dependency>  
 ```  
   
 **3. Ivy**  
 - Add the following to the `<dependencies>` section of your `ivy.xml`:  
 ```xml  
-<dependency org='com.birfincankafein' name='mixdialog' rev='1.0.2'> <artifact name='mixdialog' ext='pom' /> </dependency>
+<dependency org='com.birfincankafein' name='mixdialog' rev='1.0.3'> <artifact name='mixdialog' ext='pom' /> </dependency>
 ```  
   
 How to Use  
