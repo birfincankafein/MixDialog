@@ -31,24 +31,6 @@
                 android:paddingRight="15dp"
                 android:id="@+id/button_input"
                 android:text="@string/button_inputgroup"/>
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingTop="5dp"
-                android:paddingBottom="5dp"
-                android:paddingLeft="15dp"
-                android:paddingRight="15dp"
-                android:id="@+id/button_input_header"
-                android:text="@string/button_inputgroup_header"/>
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingTop="5dp"
-                android:paddingBottom="5dp"
-                android:paddingLeft="15dp"
-                android:paddingRight="15dp"
-                android:id="@+id/button_single"
-                android:text="@string/button_single_checkitemgroup"/>
 
             <Button
                 android:layout_width="match_parent"
@@ -59,6 +41,17 @@
                 android:paddingRight="15dp"
                 android:id="@+id/button_single_header"
                 android:text="@string/button_single_checkitemgroup_header"/>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:id="@+id/button_keyvalue"
+                android:text="@string/button_keyvalueitemgroup"/>
+
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -68,24 +61,7 @@
                 android:paddingRight="15dp"
                 android:id="@+id/button_multi"
                 android:text="@string/button_multi_checkitemgroup"/>
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingTop="5dp"
-                android:paddingBottom="5dp"
-                android:paddingLeft="15dp"
-                android:paddingRight="15dp"
-                android:id="@+id/button_multi_header"
-                android:text="@string/button_multi_checkitemgroup_header"/>
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingTop="5dp"
-                android:paddingBottom="5dp"
-                android:paddingLeft="15dp"
-                android:paddingRight="15dp"
-                android:id="@+id/button_input_single_multi"
-                android:text="@string/button_inputgroup_checkitemgroup"/>
+
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -95,6 +71,16 @@
                 android:paddingRight="15dp"
                 android:id="@+id/button_input_single_multi_header"
                 android:text="@string/button_inputgroup_checkitemgroup_header"/>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:id="@+id/button_input_single_multi_keyvalueheader"
+                android:text="@string/button_inputgroup_checkitemgroup_keyvalueheader"/>
         </LinearLayout>
     </ScrollView>
 </android.support.constraint.ConstraintLayout>

@@ -26,7 +26,7 @@ public class InputItem {
     protected EditText mEditText;
 
     /**
-     * Corresponding TextInputLayout of this CheckItem's EditText.
+     * Corresponding TextInputLayout of this InputItem's EditText.
      */
     protected TextInputLayout mTextInputLayout;
 

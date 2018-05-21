@@ -20,4 +20,5 @@ public class MixDialogParams {
     protected LinkedHashMap<String, InputItemGroup> mInputItemGroups = new LinkedHashMap<>();
     protected LinkedHashMap<String, CheckItemGroup> mSingleChoiceItemGroups = new LinkedHashMap<>();
     protected LinkedHashMap<String, CheckItemGroup> mMultiChoiceItemGroups = new LinkedHashMap<>();
+    protected LinkedHashMap<String, KeyValueItemGroup> mKeyValueItemGroups = new LinkedHashMap<>();
 }

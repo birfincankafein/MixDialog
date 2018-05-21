@@ -3,11 +3,9 @@ package com.birfincankafein.mixdialog;
 import android.content.Context;
 import android.support.annotation.ArrayRes;
 import android.support.annotation.StringRes;
-import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.RadioGroup;
 
-import java.nio.CharBuffer;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -19,6 +17,11 @@ import java.util.List;
  * @author Metehan Toksoy
  */
 public class CheckItemGroup implements ItemGroup {
+
+    /**
+     * Attached MixDialog instance
+     */
+    protected MixDialog attachedMixDialog;
 
     /**
      * All check items.
@@ -50,13 +53,14 @@ public class CheckItemGroup implements ItemGroup {
     /**
      * Listener for single-choice mode
      */
-    public RadioGroup.OnCheckedChangeListener mOnCheckChangeListener_Single = new RadioGroup.OnCheckedChangeListener() {
+    protected RadioGroup.OnCheckedChangeListener mOnCheckChangeListener_Single = new RadioGroup.OnCheckedChangeListener() {
         @Override
         public void onCheckedChanged(RadioGroup group, int checkedId) {
             if(mListener != null){
                 for(CheckItem checkItem : mCheckItems.values()){
                     if(checkItem.id == checkedId){
-                        mListener.onCheckChange(checkItem, checkItem.mCheckView.isChecked());
+                        mListener.onCheckChange(attachedMixDialog, checkItem, checkItem.mCheckView.isChecked());
+                        break;
                     }
                 }
             }
@@ -66,13 +70,14 @@ public class CheckItemGroup implements ItemGroup {
     /**
      * Listener for multi-choice mode
      */
-    public CompoundButton.OnCheckedChangeListener mOnCheckChangeListener_Multi = new CompoundButton.OnCheckedChangeListener() {
+    protected CompoundButton.OnCheckedChangeListener mOnCheckChangeListener_Multi = new CompoundButton.OnCheckedChangeListener() {
         @Override
         public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
             if(mListener != null){
                 for(CheckItem checkItem : mCheckItems.values()){
                     if(checkItem.id == buttonView.getId()){
-                        mListener.onCheckChange(checkItem, checkItem.mCheckView.isChecked());
+                        mListener.onCheckChange(attachedMixDialog, checkItem, checkItem.mCheckView.isChecked());
+                        break;
                     }
                 }
             }
@@ -99,6 +104,24 @@ public class CheckItemGroup implements ItemGroup {
             }
         }
         return checkItems;
+    }
+
+    /**
+     * Getter for all check items in this group.
+     * @return All check items inside this group.
+     */
+    @Override
+    public List<CheckItem> getItems() {
+        return new ArrayList<CheckItem>(mCheckItems.values());
+    }
+
+    /**
+     * Getter for group name
+     * @return groupName of this ItemGroup
+     */
+    @Override
+    public String getGroupName() {
+        return groupName;
     }
 
     /**
@@ -295,9 +318,10 @@ public class CheckItemGroup implements ItemGroup {
     public interface onCheckChangeListener{
         /**
          * Will be triggered when any CheckItem's check status changed.
+         * @param dialog Attached MixDialog
          * @param checkItem Check status changed CheckItem
          * @param isChecked Check status of changed CheckItem
          */
-        void onCheckChange(CheckItem checkItem, boolean isChecked);
+        void onCheckChange(MixDialog dialog, CheckItem checkItem, boolean isChecked);
     }
 }

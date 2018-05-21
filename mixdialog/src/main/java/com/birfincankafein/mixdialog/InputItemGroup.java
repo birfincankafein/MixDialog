@@ -5,6 +5,7 @@ import android.support.annotation.ArrayRes;
 import android.support.annotation.StringRes;
 import android.widget.LinearLayout;
 
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 
@@ -14,6 +15,11 @@ import java.util.List;
  * @author Metehan Toksoy
  */
 public class InputItemGroup implements ItemGroup {
+
+    /**
+     * Attached MixDialog instance
+     */
+    protected MixDialog attachedMixDialog;
 
     /**
      * All input items.
@@ -37,7 +43,25 @@ public class InputItemGroup implements ItemGroup {
     }
 
     /**
-     * Builder for a CheckItemGroup
+     * Getter for all input items in this group.
+     * @return All input items inside this group.
+     */
+    @Override
+    public List<InputItem> getItems() {
+        return new ArrayList<InputItem>(mInputItems.values());
+    }
+
+    /**
+     * Getter for group name
+     * @return groupName of this ItemGroup
+     */
+    @Override
+    public String getGroupName() {
+        return groupName;
+    }
+
+    /**
+     * Builder for a InputItemGroup
      */
     public static class Builder {
         /**

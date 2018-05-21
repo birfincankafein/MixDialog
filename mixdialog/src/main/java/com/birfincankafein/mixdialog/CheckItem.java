@@ -32,7 +32,7 @@ public class CheckItem {
     /**
      * Corresponding view to this CheckItem
      */
-    public CompoundButton mCheckView;
+    protected CompoundButton mCheckView;
 
     protected CheckItem(String text, boolean checked){
         this.mText = text;

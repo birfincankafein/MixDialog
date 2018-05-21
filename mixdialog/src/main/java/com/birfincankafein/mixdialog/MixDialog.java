@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.AttrRes;
 import android.support.annotation.DrawableRes;
@@ -13,6 +14,7 @@ import android.support.annotation.StringRes;
 import android.support.annotation.StyleRes;
 import android.support.design.widget.TextInputLayout;
 import android.util.TypedValue;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -62,6 +64,11 @@ public class MixDialog {
      * Container for Single and Multiple {@link CheckItemGroup} views
      */
     private LinearLayout mLinearLayout_CheckItemContainer;
+
+    /**
+     * Container for {@link KeyValueItemGroup} views
+     */
+    private LinearLayout mLinearLayout_KeyValueItemContainer;
 
     /**
      * LayoutParams for ItemGroups.
@@ -198,10 +205,12 @@ public class MixDialog {
             mTextView_Message = mLinearLayout_Root.findViewById(R.id.textView_dialog_message);
             mLinearLayout_InputItemContainer = mLinearLayout_Root.findViewById(R.id.linearLayout_input_items);
             mLinearLayout_CheckItemContainer = mLinearLayout_Root.findViewById(R.id.linearLayout_check_items);
+            mLinearLayout_KeyValueItemContainer = mLinearLayout_Root.findViewById(R.id.linearLayout_keyvalue_items);
         }
         else{
             mLinearLayout_InputItemContainer.removeAllViews();
             mLinearLayout_CheckItemContainer.removeAllViews();
+            mLinearLayout_KeyValueItemContainer.removeAllViews();
         }
 
         /*
@@ -218,10 +227,15 @@ public class MixDialog {
         /*
          * If any InputItemGroup created, show it!
          */
-        if(mParams.mInputItemGroups != null && !mParams.mInputItemGroups.isEmpty()){
+        if(mParams.mKeyValueItemGroups != null && !mParams.mKeyValueItemGroups.isEmpty()){
             /*
-             * Setting margin to all InputItemGroup view's container
+             * Setting margin to all KeyValueItemGroup view's container
              */
+            ((LinearLayout.LayoutParams) mLinearLayout_KeyValueItemContainer.getLayoutParams()).topMargin = (int) mParams.mContext.getResources().getDimension(R.dimen.margin_top_groups);
+            createKeyValueGroupItems();
+        }
+
+        if(mParams.mInputItemGroups != null && !mParams.mInputItemGroups.isEmpty()){
             ((LinearLayout.LayoutParams) mLinearLayout_InputItemContainer.getLayoutParams()).topMargin = (int) mParams.mContext.getResources().getDimension(R.dimen.margin_top_groups);
             createInputGroupItems();
         }
@@ -300,6 +314,53 @@ public class MixDialog {
     }
 
     /**
+     * Create and add views for all KeyValueItemGroups.
+     */
+    private void createKeyValueGroupItems() {
+        LinearLayout.LayoutParams mLayoutParams_KeyValueItem = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        for (KeyValueItemGroup keyValueItemGroup : mParams.mKeyValueItemGroups.values()) {
+            if (!keyValueItemGroup.mKeyValueItems.isEmpty()) {
+                keyValueItemGroup.attachedMixDialog = this;
+                LinearLayout.LayoutParams mLayoutParams_TextViewKey = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                mLayoutParams_TextViewKey.weight = keyValueItemGroup.mKeyValueRatio;
+                LinearLayout.LayoutParams mLayoutParams_TextViewValue = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                mLayoutParams_TextViewValue.weight = 1;
+
+                LinearLayout mLinearLayout_KeyValueItemGroup = new LinearLayout(mParams.mContext);
+                mLinearLayout_KeyValueItemGroup.setOrientation(LinearLayout.VERTICAL);
+
+                if (keyValueItemGroup.showGroupNameAsHeader) {
+                    createHeaderView(keyValueItemGroup.groupName, mLinearLayout_KeyValueItemGroup);
+                }
+                for(String keyValueItemKey : keyValueItemGroup.mKeyValueItems.keySet()){
+                    KeyValueItem keyValueItem = keyValueItemGroup.mKeyValueItems.get(keyValueItemKey);
+                    LinearLayout mLinearLayout_KeyValueItem = new LinearLayout(mParams.mContext);
+                    mLinearLayout_KeyValueItem.setOrientation(LinearLayout.HORIZONTAL);
+
+                    TextView mTextView_Key = new TextView(mParams.mContext);
+                    mTextView_Key.setText(keyValueItemKey);
+                    mTextView_Key.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.START);
+                    mTextView_Key.setTypeface(Typeface.DEFAULT_BOLD);
+
+                    TextView mTextView_Value = new TextView(mParams.mContext);
+                    mTextView_Value.setText(keyValueItem.mValue);
+                    mTextView_Key.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.START);
+
+                    keyValueItem.mTextView_Key = mTextView_Key;
+                    keyValueItem.mTextView_Value = mTextView_Value;
+
+                    mLinearLayout_KeyValueItem.addView(mTextView_Key, mLayoutParams_TextViewKey);
+                    mLinearLayout_KeyValueItem.addView(mTextView_Value, mLayoutParams_TextViewValue);
+
+                    mLinearLayout_KeyValueItemGroup.addView(mLinearLayout_KeyValueItem, mLayoutParams_KeyValueItem);
+                }
+
+                mLinearLayout_InputItemContainer.addView(mLinearLayout_KeyValueItemGroup, mLayoutParams_ItemGroups);
+            }
+        }
+    }
+
+    /**
      * Create and add views for all InputGroupItems.
      */
     private void createInputGroupItems() {
@@ -310,6 +371,7 @@ public class MixDialog {
 
         for (InputItemGroup inputItemGroup : mParams.mInputItemGroups.values()) {
             if (!inputItemGroup.mInputItems.isEmpty()) {
+                inputItemGroup.attachedMixDialog = this;
                 LinearLayout mLinearLayout_InputItemGroup = new LinearLayout(mParams.mContext);
                 mLinearLayout_InputItemGroup.setOrientation(LinearLayout.VERTICAL);
                 if (inputItemGroup.showGroupNameAsHeader) {
@@ -330,7 +392,6 @@ public class MixDialog {
                 mLinearLayout_InputItemContainer.addView(mLinearLayout_InputItemGroup, mLayoutParams_ItemGroups);
             }
         }
-
     }
 
     /**
@@ -339,6 +400,7 @@ public class MixDialog {
     private void createMultiChoiceItems() {
         for (CheckItemGroup checkItemGroup : mParams.mMultiChoiceItemGroups.values()) {
             if (!checkItemGroup.mCheckItems.isEmpty()) {
+                checkItemGroup.attachedMixDialog = this;
                 LinearLayout mLinearLayout_CheckItemGroup = new LinearLayout(mParams.mContext);
                 mLinearLayout_CheckItemGroup.setOrientation(LinearLayout.VERTICAL);
                 if (checkItemGroup.showGroupNameAsHeader) {
@@ -369,6 +431,7 @@ public class MixDialog {
     private void createSingleChoiceItems() {
         for (CheckItemGroup checkItemGroup : mParams.mSingleChoiceItemGroups.values()) {
             if (!checkItemGroup.mCheckItems.isEmpty()) {
+                checkItemGroup.attachedMixDialog = this;
                 LinearLayout mLinearLayout_CheckItemGroup = new LinearLayout(mParams.mContext);
                 mLinearLayout_CheckItemGroup.setOrientation(LinearLayout.VERTICAL);
                 if (checkItemGroup.showGroupNameAsHeader) {
@@ -415,7 +478,7 @@ public class MixDialog {
     }
 
     /**
-     * Getter for InputItem
+     * Getter for InputItem in given group name
      * @param groupName group name of the InputItem
      * @param hint hint text of the InputItem
      * @return InputItem with given group name and hint, null if not found
@@ -432,7 +495,20 @@ public class MixDialog {
     }
 
     /**
-     * Getter for single-choice CheckItem
+     * Getter for InputItemGroup in given group name
+     * @param groupName group name of the InputItems
+     * @return InputItemGroup with given group name, null if not found
+     */
+    @Nullable
+    public InputItemGroup getInputItemGroup(String groupName){
+        if(mParams.mInputItemGroups.containsKey(groupName)){
+            return mParams.mInputItemGroups.get(groupName);
+        }
+        return null;
+    }
+
+    /**
+     * Getter for single-choice CheckItem in given group name
      * @param groupName group name of the CheckItem
      * @param text text of the CheckItem
      * @return CheckItem from single-choice list with given group name and text, null if not found
@@ -444,6 +520,19 @@ public class MixDialog {
             if(checkItemGroup.mCheckItems.containsKey(text)){
                 return checkItemGroup.mCheckItems.get(text);
             }
+        }
+        return null;
+    }
+
+    /**
+     * Getter for single-choice CheckItemGroup in given group name
+     * @param groupName group name of the CheckItem
+     * @return CheckItemGroup from single-choice list with given group name, null if not found
+     */
+    @Nullable
+    public CheckItemGroup getSingleCheckItemGroup(String groupName){
+        if(mParams.mSingleChoiceItemGroups.containsKey(groupName)){
+            return mParams.mSingleChoiceItemGroups.get(groupName);
         }
         return null;
     }
@@ -463,7 +552,7 @@ public class MixDialog {
     }
 
     /**
-     * Getter for multi-choice CheckItem
+     * Getter for multi-choice CheckItem in given group name
      * @param groupName group name of the CheckItem
      * @param text text of the CheckItem
      * @return CheckItem from multi-choice list with given group name and text, null if not found
@@ -480,6 +569,19 @@ public class MixDialog {
     }
 
     /**
+     * Getter for multi-choice CheckItemGroup in given group name
+     * @param groupName group name of the CheckItem
+     * @return CheckItemGroup from multi-choice list with given group name, null if not found
+     */
+    @Nullable
+    public CheckItemGroup getMultiCheckItemGroup(String groupName){
+        if(mParams.mMultiChoiceItemGroups.containsKey(groupName)){
+            return mParams.mMultiChoiceItemGroups.get(groupName);
+        }
+        return null;
+    }
+
+    /**
      * Getter for checked items from multi-choice list in given group name
      * @param groupName group name to search for checked ones.
      * @return checked CheckItems from multi-choice list with given group name and text, null if not found.
@@ -490,6 +592,45 @@ public class MixDialog {
             return mParams.mMultiChoiceItemGroups.get(groupName).getCheckedItems();
         }
         return null;
+    }
+
+    /**
+     * Getter for KeyValueItem in given group name
+     * @param groupName group name of the KeyValueItem
+     * @param key key of the KeyValueItem
+     * @return KeyValueItem from KeyValueItemGroups list with given group name and key, null if not found
+     */
+    @Nullable
+    public KeyValueItem getKeyValueItem(String groupName, String key){
+        if(mParams.mKeyValueItemGroups.containsKey(groupName)){
+            KeyValueItemGroup keyValueItemGroup = mParams.mKeyValueItemGroups.get(groupName);
+            if(keyValueItemGroup.mKeyValueItems.containsKey(key)){
+                return keyValueItemGroup.mKeyValueItems.get(key);
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Getter for KeyValueItemGroup in given group name
+     * @param groupName group name of the KeyValueItems
+     * @return KeyValueItemGroup with given group name, null if not found
+     */
+    @Nullable
+    public KeyValueItemGroup getKeyValueItemGroup(String groupName){
+        if(mParams.mKeyValueItemGroups.containsKey(groupName)){
+            return mParams.mKeyValueItemGroups.get(groupName);
+        }
+        return null;
+    }
+
+    /**
+     * Updates MixDialog's message text
+     * @param newMessage MixDialog's message body text
+     */
+    public void updateMessage(String newMessage){
+        if(mTextView_Message != null)
+            this.mTextView_Message.setText(newMessage);
     }
 
     /**
@@ -773,6 +914,27 @@ public class MixDialog {
          */
         public CheckItemGroup.Builder addCheckItemGroup(String groupName){
             return new CheckItemGroup.Builder(this, groupName);
+        }
+
+        /**
+         * Add KeyValueItemGroup to the Dialog.
+         * @return This Builder object to allow for chaining of calls to set methods
+         * @see InputItemGroup
+         */
+        public Builder addKeyValueItemGroup(KeyValueItemGroup keyValueItemGroup){
+            params.mKeyValueItemGroups.put(keyValueItemGroup.groupName, keyValueItemGroup);
+            return this;
+        }
+
+        /**
+         * Add KeyValueItemGroup to the Dialog.
+         * @return Builder for InputItemGroup to allow for chaining of calls to set methods.
+         * You should call {@link KeyValueItemGroup.Builder#buildWithParent()} for continue to {@link MixDialog.Builder}
+         * @see KeyValueItemGroup
+         * @see KeyValueItemGroup.Builder
+         */
+        public KeyValueItemGroup.Builder addKeyValueItemGroup(String groupName){
+            return new KeyValueItemGroup.Builder(this, groupName);
         }
 
         /**
