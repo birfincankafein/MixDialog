@@ -316,6 +316,7 @@ public class MainActivity extends AppCompatActivity {
                 .setNegativeButtonText("NegativeButton")
                 .addKeyValueItemGroup("Key Value Group")
                     .setShowGroupNameAsHeader(true)
+                    .setKeyValueWidthRatio(1.5f)
                     .addKeyValueItem("Item 1:", "false")
                     .addKeyValueItem("Item 2: ", "true")
                     .addKeyValueItem("Item 3: ", "false")
