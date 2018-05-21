@@ -1,6 +1,6 @@
 
     
-[![Release](https://img.shields.io/badge/release-2.0.0-blue.svg?style=flat)](https://bintray.com/birfincankafein/com.birfincankafein/mixdialog/_latestVersion)  [![API](https://img.shields.io/badge/API-14+-green.svg?style=flat)]()  
+[![Release](https://img.shields.io/badge/release-2.0.1-blue.svg?style=flat)](https://bintray.com/birfincankafein/com.birfincankafein/mixdialog/_latestVersion)  [![API](https://img.shields.io/badge/API-14+-green.svg?style=flat)]()  
   What is MixDialog? 
   ------------       
  MixDialog is a dialog utility that allows you to show title text, message text, input areas, single and multi choice items at the same time in the AlertDialog. It has 4 ItemGroup type: `InputItemGroup`, `CheckItemGroup` for single checkable items, `CheckItemGroup` for multiple checkable items and `KeyValueItemGroup` for key-value pair items.   
@@ -15,7 +15,7 @@ In order to use the library, there are 3 different options:
  -  Add this to your app `build.gradle`:    
  ```gradle 
  dependencies {
-	implementation 'com.birfincankafein:mixdialog:2.0.0@aar'  
+	implementation 'com.birfincankafein:mixdialog:2.0.1@aar'  
 }
 ```    
     
@@ -25,14 +25,14 @@ In order to use the library, there are 3 different options:
  <dependency>    
 	<groupId>com.birfincankafein</groupId>  
 	<artifactId>mixdialog</artifactId>    
-	<version>2.0.0</version>  
+	<version>2.0.1</version>  
 </dependency> 
 ```    
     
 **3. Ivy**
  - Add the following to the `<dependencies>` section of your `ivy.xml`:  
 ```xml 
-<dependency org='com.birfincankafein' name='mixdialog' rev='2.0.0'> <artifact name='mixdialog' ext='pom' /> </dependency>  
+<dependency org='com.birfincankafein' name='mixdialog' rev='2.0.1'> <artifact name='mixdialog' ext='pom' /> </dependency>  
 ```    
     
 How to Use 
@@ -147,7 +147,7 @@ MixDialog mixDialog = new MixDialog.Builder(this)
         .setSingleChoice(true)    
         .addItem("Item 1")    
         .addItem("Item 2", true)    
-        .addItem("Item 3", false)    
+        .addItem("Item 3", false, new Object())    
         .setOnCheckChangeListener(new CheckItemGroup.onCheckChangeListener() {    
             @Override    
             public void onCheckChange(CheckItem checkItem, boolean isChecked) {    
@@ -181,7 +181,7 @@ Also, you can get CheckItem from the MixDialog instance.
 * To get one of the single-check item, you can use `MixDialog#getSingleCheckItem(String, String)` with group name and text of the CheckItem, to get checked item from the single-check group you can use `MixDialog#getSingleCheckedItem(String)` with group name.  
 * To get one of the multi-check item, you can use `MixDialog#getMultiCheckItem(String, String)` with group name and text of the CheckItem, , to get checked items from the multi-check group you can use `MixDialog#getMultiCheckedItems(String)` with group name.  
   
- You can get text of the CheckItem using  `CheckItem#getText()`, get check status using `CheckItem#isChecked()` or set check status using `InputItem#setChecked(boolean)`.   
+ You can get text of the CheckItem using  `CheckItem#getText()`, get check status using `CheckItem#isChecked()`, set check status using `CheckItem#setChecked(boolean)` or get previous set data using `CheckItem#getData()`.   
   
 ```java  
 CheckItem checkedItem = dialog.getSingleCheckedItem("Check Group 1");  
