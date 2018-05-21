@@ -190,12 +190,34 @@ public class CheckItemGroup implements ItemGroup {
         }
 
         /**
+         * Add not checked CheckItem to this group.
+         * @param text CheckItem text
+         * @param data CheckItem extra data
+         * @return This Builder object to allow for chaining of calls to set methods
+         */
+        public Builder addItem(String text, Object data){
+            return addItem(text, false, data);
+        }
+
+        /**
          * Add CheckItem to this group.
          * @param text CheckItem text
+         * @param isChecked CheckItem check status
          * @return This Builder object to allow for chaining of calls to set methods
          */
         public Builder addItem(String text, boolean isChecked){
-            mCheckItems.put(text, new CheckItem(text, isChecked));
+            return addItem(text, isChecked, null);
+        }
+
+        /**
+         * Add CheckItem to this group.
+         * @param text CheckItem text
+         * @param isChecked CheckItem check status
+         * @param data CheckItem extra data
+         * @return This Builder object to allow for chaining of calls to set methods
+         */
+        public Builder addItem(String text, boolean isChecked, Object data){
+            mCheckItems.put(text, new CheckItem(text, isChecked, data));
             return this;
         }
 
@@ -211,11 +233,32 @@ public class CheckItemGroup implements ItemGroup {
         /**
          * Add CheckItem to this group.
          * @param textResourceId CheckItem text from resources
+         * @param data CheckItem extra data
+         * @return This Builder object to allow for chaining of calls to set methods
+         */
+        public Builder addItem(@StringRes int textResourceId, Object data){
+            return addItem(mContext.getResources().getString(textResourceId), data);
+        }
+
+        /**
+         * Add CheckItem to this group.
+         * @param textResourceId CheckItem text from resources
          * @param isChecked If true CheckItem shown as checked as default, not checked otherwise
          * @return This Builder object to allow for chaining of calls to set methods
          */
         public Builder addItem(@StringRes int textResourceId, boolean isChecked){
             return addItem(mContext.getResources().getString(textResourceId), isChecked);
+        }
+
+        /**
+         * Add CheckItem to this group.
+         * @param textResourceId CheckItem text from resources
+         * @param isChecked If true CheckItem shown as checked as default, not checked otherwise
+         * @param data CheckItem extra data
+         * @return This Builder object to allow for chaining of calls to set methods
+         */
+        public Builder addItem(@StringRes int textResourceId, boolean isChecked, Object data){
+            return addItem(mContext.getResources().getString(textResourceId), isChecked, data);
         }
 
         /**
@@ -226,6 +269,19 @@ public class CheckItemGroup implements ItemGroup {
         public Builder addItems(String[] texts){
             for(int i=0 ; i<texts.length ; i++){
                 addItem(texts[i]);
+            }
+            return this;
+        }
+
+        /**
+         * Add not checked CheckItems to this group.
+         * @param texts CheckItem texts
+         * @param data CheckItem data array
+         * @return This Builder object to allow for chaining of calls to set methods
+         */
+        public Builder addItems(String[] texts, Object[] data){
+            for(int i=0 ; i<texts.length ; i++){
+                addItem(texts[i], data[i]);
             }
             return this;
         }
@@ -246,6 +302,20 @@ public class CheckItemGroup implements ItemGroup {
         /**
          * Add CheckItems to this group.
          * @param texts CheckItem texts
+         * @param isAllChecked If true all CheckItems shown as checked as default, not checked otherwise
+         * @param data CheckItem data array
+         * @return This Builder object to allow for chaining of calls to set methods
+         */
+        public Builder addItems(String[] texts, boolean isAllChecked, Object[] data){
+            for(int i=0 ; i<texts.length ; i++){
+                addItem(texts[i], isAllChecked, data[i]);
+            }
+            return this;
+        }
+
+        /**
+         * Add CheckItems to this group.
+         * @param texts CheckItem texts
          * @param isChecked CheckItems checks status'
          * @return This Builder object to allow for chaining of calls to set methods
          */
@@ -257,12 +327,36 @@ public class CheckItemGroup implements ItemGroup {
         }
 
         /**
+         * Add CheckItems to this group.
+         * @param texts CheckItem texts
+         * @param isChecked CheckItems checks status'
+         * @param data CheckItem data array
+         * @return This Builder object to allow for chaining of calls to set methods
+         */
+        public Builder addItems(String[] texts, boolean[] isChecked, Object[] data){
+            for(int i=0 ; i<texts.length ; i++){
+                addItem(texts[i], isChecked[i], data[i]);
+            }
+            return this;
+        }
+
+        /**
          * Add not checked CheckItems to this group.
          * @param textsResourceId CheckItem texts from resources
          * @return This Builder object to allow for chaining of calls to set methods
          */
         public Builder addItems(@ArrayRes int textsResourceId){
             return addItems(mContext.getResources().getStringArray(textsResourceId));
+        }
+
+        /**
+         * Add not checked CheckItems to this group.
+         * @param textsResourceId CheckItem texts from resources
+         * @param data CheckItem data array
+         * @return This Builder object to allow for chaining of calls to set methods
+         */
+        public Builder addItems(@ArrayRes int textsResourceId, Object[] data){
+            return addItems(mContext.getResources().getStringArray(textsResourceId), data);
         }
 
         /**
@@ -278,11 +372,33 @@ public class CheckItemGroup implements ItemGroup {
         /**
          * Add CheckItems to this group.
          * @param textsResourceId CheckItem texts from resources
+         * @param isAllChecked If true all CheckItems shown as checked as default, not checked otherwise
+         * @param data CheckItem data array
+         * @return This Builder object to allow for chaining of calls to set methods
+         */
+        public Builder addItems(@ArrayRes int textsResourceId, boolean isAllChecked, Object[] data){
+            return addItems(mContext.getResources().getStringArray(textsResourceId), isAllChecked, data);
+        }
+
+        /**
+         * Add CheckItems to this group.
+         * @param textsResourceId CheckItem texts from resources
          * @param isChecked CheckItems checks status'
          * @return This Builder object to allow for chaining of calls to set methods
          */
         public Builder addItems(@ArrayRes int textsResourceId, boolean[] isChecked){
             return addItems(mContext.getResources().getStringArray(textsResourceId), isChecked);
+        }
+
+        /**
+         * Add CheckItems to this group.
+         * @param textsResourceId CheckItem texts from resources
+         * @param isChecked CheckItems checks status'
+         * @param data CheckItem data array
+         * @return This Builder object to allow for chaining of calls to set methods
+         */
+        public Builder addItems(@ArrayRes int textsResourceId, boolean[] isChecked, Object[] data){
+            return addItems(mContext.getResources().getStringArray(textsResourceId), isChecked, data);
         }
 
         /**

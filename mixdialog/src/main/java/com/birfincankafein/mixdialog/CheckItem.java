@@ -30,13 +30,23 @@ public class CheckItem {
     protected final int id;
 
     /**
+     * Extra data of this checkItem
+     */
+    protected Object mData;
+
+    /**
      * Corresponding view to this CheckItem
      */
     protected CompoundButton mCheckView;
 
     protected CheckItem(String text, boolean checked){
+        this(text, checked, null);
+    }
+
+    protected CheckItem(String text, boolean checked, Object data){
         this.mText = text;
         this.mChecked = checked;
+        this.mData = data;
         id = ++idCounter;
     }
 
@@ -46,6 +56,14 @@ public class CheckItem {
      */
     public String getText() {
         return mText;
+    }
+
+    /**
+     * Gets this CheckItem's data
+     * @return Dtaa of this CheckItem
+     */
+    public Object getData() {
+        return mData;
     }
 
     /**
