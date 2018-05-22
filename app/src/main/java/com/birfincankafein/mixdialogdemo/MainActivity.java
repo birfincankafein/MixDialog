@@ -32,11 +32,13 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 case R.id.button_keyvalue:
                     createAndShowKeyValue();
+                    break;
                 case R.id.button_multi:
                     createAndShowMultiDialog();
                     break;
                 case R.id.button_input_single_multi_header:
                     createAndShowInputSingleMultiHeaderDialog();
+                    break;
                 case R.id.button_input_single_multi_keyvalueheader:
                     createAndShowInputSingleMultiKeyValueHeaderDialog();
                     break;
@@ -45,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
     };
 
     private void createAndShowBasicDialog() {
-        MixDialog mixDialog = new MixDialog.Builder(this)
+        new MixDialog.Builder(this)
                 .setTitle("Basic Dialog")
                 .setMessage("Hello from MixDialog!")
                 .setPositiveButtonText("PositiveButton")
@@ -59,13 +61,11 @@ public class MainActivity extends AppCompatActivity {
                     }
 
                 })
-                .build();
-        mixDialog.create();
-        mixDialog.show();
+                .build().show();
     }
 
     private void createAndShowInputDialog() {
-        MixDialog mixDialog = new MixDialog.Builder(this)
+        new MixDialog.Builder(this)
                 .setTitle("Basic Dialog")
                 .setMessage("Hello from MixDialog!")
                 .setPositiveButtonText("PositiveButton")
@@ -104,13 +104,11 @@ public class MainActivity extends AppCompatActivity {
                         return retVal;
                     }
                 })
-                .build();
-        mixDialog.create();
-        mixDialog.show();
+                .build().show();
     }
 
     private void createAndShowSingleHeaderDialog() {
-        MixDialog mixDialog = new MixDialog.Builder(this)
+        new MixDialog.Builder(this)
                 .setTitle("Basic Dialog")
                 .setMessage("Hello from MixDialog!")
                 .setPositiveButtonText("PositiveButton")
@@ -152,13 +150,11 @@ public class MainActivity extends AppCompatActivity {
                         return retVal;
                     }
                 })
-                .build();
-        mixDialog.create();
-        mixDialog.show();
+                .build().show();
     }
 
     private void createAndShowKeyValue(){
-        MixDialog mixDialog = new MixDialog.Builder(this)
+        new MixDialog.Builder(this)
                 .setTitle("Basic Dialog")
                 .setMessage("Hello from MixDialog!")
                 .setPositiveButtonText("PositiveButton")
@@ -176,13 +172,11 @@ public class MainActivity extends AppCompatActivity {
                         return true;
                     }
                 })
-                .build();
-        mixDialog.create();
-        mixDialog.show();
+                .build().show();
     }
 
     private void createAndShowMultiDialog() {
-        MixDialog mixDialog = new MixDialog.Builder(this)
+        new MixDialog.Builder(this)
                 .setTitle("Basic Dialog")
                 .setMessage("Hello from MixDialog!")
                 .setPositiveButtonText("PositiveButton")
@@ -224,12 +218,10 @@ public class MainActivity extends AppCompatActivity {
                         return retVal;
                     }
                 })
-                .build();
-        mixDialog.create();
-        mixDialog.show();
+                .build().show();
     }
     private void createAndShowInputSingleMultiHeaderDialog() {
-        MixDialog mixDialog = new MixDialog.Builder(this)
+        new MixDialog.Builder(this)
                 .setTitle("Basic Dialog")
                 .setMessage("Hello from MixDialog!")
                 .setPositiveButtonText("PositiveButton")
@@ -303,13 +295,11 @@ public class MainActivity extends AppCompatActivity {
                         return true;
                     }
                 })
-                .build();
-        mixDialog.create();
-        mixDialog.show();
+                .build().show();
     }
 
     private void createAndShowInputSingleMultiKeyValueHeaderDialog(){
-        MixDialog mixDialog = new MixDialog.Builder(this)
+        new MixDialog.Builder(this)
                 .setTitle("Basic Dialog")
                 .setMessage("Hello from MixDialog!")
                 .setPositiveButtonText("PositiveButton")
@@ -377,9 +367,7 @@ public class MainActivity extends AppCompatActivity {
                         return true;
                     }
                 })
-                .build();
-        mixDialog.create();
-        mixDialog.show();
+                .build().show();
     }
 
     @Override
@@ -388,6 +376,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         findViewById(R.id.button_basic).setOnClickListener(onClickListener);
+        findViewById(R.id.button_keyvalue).setOnClickListener(onClickListener);
         findViewById(R.id.button_input).setOnClickListener(onClickListener);
         findViewById(R.id.button_single_header).setOnClickListener(onClickListener);
         findViewById(R.id.button_multi).setOnClickListener(onClickListener);
