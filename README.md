@@ -1,6 +1,6 @@
 
     
-[![Release](https://img.shields.io/badge/release-2.0.3-blue.svg?style=flat)](https://bintray.com/birfincankafein/com.birfincankafein/mixdialog/_latestVersion)  [![API](https://img.shields.io/badge/API-14+-green.svg?style=flat)]()  
+[![Release](https://img.shields.io/badge/release-2.0.4-blue.svg?style=flat)](https://bintray.com/birfincankafein/com.birfincankafein/mixdialog/_latestVersion)  [![API](https://img.shields.io/badge/API-14+-green.svg?style=flat)]()  
   What is MixDialog? 
   ------------       
  MixDialog is a dialog utility that allows you to show title text, message text, input areas, single and multi choice items at the same time in the AlertDialog. It has 4 ItemGroup type: `InputItemGroup`, `CheckItemGroup` for single checkable items, `CheckItemGroup` for multiple checkable items and `KeyValueItemGroup` for key-value pair items.   
@@ -15,7 +15,7 @@ In order to use the library, there are 3 different options:
  -  Add this to your app `build.gradle`:    
  ```gradle 
  dependencies {
-	implementation 'com.birfincankafein:mixdialog:2.0.3@aar'  
+	implementation 'com.birfincankafein:mixdialog:2.0.4@aar'  
 }
 ```    
     
@@ -25,14 +25,14 @@ In order to use the library, there are 3 different options:
  <dependency>    
 	<groupId>com.birfincankafein</groupId>  
 	<artifactId>mixdialog</artifactId>    
-	<version>2.0.3</version>  
+	<version>2.0.4</version>  
 </dependency> 
 ```    
     
 **3. Ivy**
  - Add the following to the `<dependencies>` section of your `ivy.xml`:  
 ```xml 
-<dependency org='com.birfincankafein' name='mixdialog' rev='2.0.3'> <artifact name='mixdialog' ext='pom' /> </dependency>  
+<dependency org='com.birfincankafein' name='mixdialog' rev='2.0.4'> <artifact name='mixdialog' ext='pom' /> </dependency>  
 ```    
     
 How to Use 
