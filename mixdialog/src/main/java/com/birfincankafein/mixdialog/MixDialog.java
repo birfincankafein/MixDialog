@@ -117,6 +117,9 @@ public class MixDialog {
                     mAlertDialog.dismiss();
                 }
             }
+            else {
+                mAlertDialog.dismiss();
+            }
         }
     };
 
@@ -133,6 +136,10 @@ public class MixDialog {
                     mAlertDialog.dismiss();
                 }
             }
+            else {
+                mAlertDialog.dismiss();
+            }
+
         }
     };
 
@@ -150,13 +157,11 @@ public class MixDialog {
                     mAlertDialog.dismiss();
                 }
             }
+            else {
+                mAlertDialog.dismiss();
+            }
         }
     };
-
-    /**
-     * Indicates that layout corresponding to the data created
-     */
-    private boolean isCreated;
 
     /**
      * Private constructor to force developer to use {@link Builder}
@@ -244,8 +249,6 @@ public class MixDialog {
         if( (mParams.mMultiChoiceItemGroups == null || mParams.mMultiChoiceItemGroups.isEmpty()) && (mParams.mSingleChoiceItemGroups == null || mParams.mSingleChoiceItemGroups.isEmpty())){
             mLinearLayout_CheckItemContainer.setVisibility(View.GONE);
         }
-
-        this.isCreated = true;
     }
 
     /**
