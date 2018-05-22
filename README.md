@@ -1,6 +1,6 @@
 
     
-[![Release](https://img.shields.io/badge/release-2.0.1-blue.svg?style=flat)](https://bintray.com/birfincankafein/com.birfincankafein/mixdialog/_latestVersion)  [![API](https://img.shields.io/badge/API-14+-green.svg?style=flat)]()  
+[![Release](https://img.shields.io/badge/release-2.0.2-blue.svg?style=flat)](https://bintray.com/birfincankafein/com.birfincankafein/mixdialog/_latestVersion)  [![API](https://img.shields.io/badge/API-14+-green.svg?style=flat)]()  
   What is MixDialog? 
   ------------       
  MixDialog is a dialog utility that allows you to show title text, message text, input areas, single and multi choice items at the same time in the AlertDialog. It has 4 ItemGroup type: `InputItemGroup`, `CheckItemGroup` for single checkable items, `CheckItemGroup` for multiple checkable items and `KeyValueItemGroup` for key-value pair items.   
@@ -15,7 +15,7 @@ In order to use the library, there are 3 different options:
  -  Add this to your app `build.gradle`:    
  ```gradle 
  dependencies {
-	implementation 'com.birfincankafein:mixdialog:2.0.1@aar'  
+	implementation 'com.birfincankafein:mixdialog:2.0.2@aar'  
 }
 ```    
     
@@ -25,14 +25,14 @@ In order to use the library, there are 3 different options:
  <dependency>    
 	<groupId>com.birfincankafein</groupId>  
 	<artifactId>mixdialog</artifactId>    
-	<version>2.0.1</version>  
+	<version>2.0.2</version>  
 </dependency> 
 ```    
     
 **3. Ivy**
  - Add the following to the `<dependencies>` section of your `ivy.xml`:  
 ```xml 
-<dependency org='com.birfincankafein' name='mixdialog' rev='2.0.1'> <artifact name='mixdialog' ext='pom' /> </dependency>  
+<dependency org='com.birfincankafein' name='mixdialog' rev='2.0.2'> <artifact name='mixdialog' ext='pom' /> </dependency>  
 ```    
     
 How to Use 
@@ -41,10 +41,10 @@ MixDialog and ItemGroups has it's own builder to create an instance. Also, MixDi
 * Title text  
 * Message text   
 * Positive, Negative and Neutral Buttons  
+* Key-value paired item groups  
 * Input item groups  
 * Single checkable item groups  
 * Multiple checkable item groups  
-* Key-value paired item groups  
   
 #### Title,  Message texts, Buttons and Dialog Event  
 You can easily set:  
@@ -57,7 +57,7 @@ You can easily set:
   
 In the DialogEvent's `onDialogButtonClick` callback, you should return a boolean value: ***true*** for dismiss the dialog after `buttonType` button clicked, ***false*** to prevent dialog from closing.  
 ```java 
-MixDialog mixDialog = new MixDialog.Builder(mContext)    
+MixDialog mMixDialog = new MixDialog.Builder(mContext)    
     .setTitle("Basic Dialog")    
     .setMessage("Hello from MixDialog!")    
     .setPositiveButtonText("PositiveButton")    
@@ -67,17 +67,18 @@ MixDialog mixDialog = new MixDialog.Builder(mContext)
     .setOnDialogEventListener(new MixDialog.onDialogEventListener() {    
         @Override    
         public boolean onDialogButtonClick(MixDialog.ButtonType buttonType, MixDialog dialog) {  
-			 return true;        
-		}    
+            return true;        
+        }    
     })    
-	.build().create().show();  
+    .build();
+mMixDialog.show();  
 ```  
 #### KeyValueItemGroup and KeyValueItem  
 KeyValueItemGroup is an item group that contains key value pair KeyValueItems. Each KeyValueItemGroup has its own title and will  be shown based on `setShowGroupNameAsHeader(boolean)` method. KeyValueItemGroups can be created using `KeyValueItemGroup.Builder(Context)`. Builder automatically creates `KeyValueItem`s when `addKeyValueItem()` called.  
   
 You can add KeyValueItemGroups from `MixDialog.Builder` using  `MixDialog.Builder#addKeyValueItemGroup(KeyValueItemGroup)`. With this method, you need to create KeyValueItemGroup outside of the MixDialog.Builder. Another way to add KeyValueItemGroup from `MixDialog.Builder` is using `MixDialog.Builder#addKeyValueItemGroup(String)`. This method returns  `KeyValueItemGroup.Builder()` that allows you create KeyValueItemGroup and to continue to build MixDialog, you can call `buildWithParent()` from `KeyValueItemGroup.Builder`.  
 ```java  
-MixDialog mixDialog = new MixDialog.Builder(this)  
+new MixDialog.Builder(this)  
 	... 
 	.addKeyValueItemGroup("KeyValue Group 1")
 		.setKeyValueWidthRatio(1.5f)
@@ -86,7 +87,7 @@ MixDialog mixDialog = new MixDialog.Builder(this)
 	    .addKeyValueItem("Key 3", "Value 3")  
 	    .buildWithParent()
 	... 
-	.build().create().show();
+	.build().show();
 ```  
 Also, you can get KeyValueItem from MixDialog by group name and key text. You can change the value of the item from  `KeyValueItem#setValue(String)`, get the key from `KeyValueItem#getKey()` or get value from `KeyValueItem#getValue()`.  
   
@@ -94,16 +95,17 @@ Also, you can get KeyValueItem from MixDialog by group name and key text. You ca
 // Getting KeyValueItem from group 1.  
 KeyValueItem keyvalueGroup1_Item1 = dialog.getKeyValueItemGroup("KeyValue Group 1", "Key 1");  
 if(keyvalueGroup1_Item1 != null){  
-	if(keyvalueGroup1_Item1.getValue().isEmpty()){ 
-		keyvalueGroup1_Item1.setValur("This value is not empty now!"); 
-	} 
+    if(keyvalueGroup1_Item1.getValue().isEmpty()){ 
+        keyvalueGroup1_Item1.setValur("This value is not empty now!"); 
+    } 
 }  
 ```  
 #### InputItemGroup and InputItem  
 InputItemGroup is an item group that contains user-editable InputItems. Each InputItemGroup has its own title and will  be shown based on `setShowGroupNameAsHeader(boolean)` method. InputItemGroups can be created using `InputItemGroup.Builder(Context)`. Builder automatically creates `InputItem`s when `addInputItem()` called.   
   
 You can add InputItemGroups from `MixDialog.Builder` using  `MixDialog.Builder#addInputItemGroup(InputItemGroup)`. With this method, you need to create InputItemGroup outside of the MixDialog.Builder. Another way to add InputItemGroup from `MixDialog.Builder` is using `MixDialog.Builder#addInputItemGroup(String)`. This method returns  `InputItemGroup.Builder()` that allows you create InputItemGroup and to continue to build MixDialog, you can call `buildWithParent()` from `InputItemGroup.Builder`.   
-```java MixDialog mixDialog = new MixDialog.Builder(this)    
+```java 
+new MixDialog.Builder(this)    
     ...   
     .addInputItemGroup("Input Group 1")    
         .addInputItem("Input 1-1")    
@@ -114,7 +116,7 @@ You can add InputItemGroups from `MixDialog.Builder` using  `MixDialog.Builder#a
         .addInputItem("Input 2-2", "Default Value 2-2")    
         .buildWithParent()    
     ...   
-	.build().create().show();  
+	.build().show();  
 ```  
 Also, you can get InputItem from MixDialog by group name and hint text. You can set error to item from  `InputItem#setError(String)`, clear error from `InputItem#clearError()` or get user input from `InputItem#getValue()`.   
   
@@ -141,7 +143,7 @@ Each CheckItemGroup has its own callback called `CheckItemGroup.onCheckChangeLis
      
 ***Single-Choice MixDialog***  
 ```java  
-MixDialog mixDialog = new MixDialog.Builder(this)    
+new MixDialog.Builder(this)    
     ...   
     .addCheckItemGroup("Check Group 1")    
         .setSingleChoice(true)    
@@ -156,11 +158,11 @@ MixDialog mixDialog = new MixDialog.Builder(this)
         })    
         .buildWithParent()    
     ...  
- .build(); mixDialog.create(); mixDialog.show();  
+    .build().show();  
 ```  
 ***Multi-Choice MixDialog***  
 ```java  
-MixDialog mixDialog = new MixDialog.Builder(this)    
+new MixDialog.Builder(this)    
     ...   
     .addCheckItemGroup("Check Group 1")    
         .setSingleChoice(false)    
@@ -175,7 +177,7 @@ MixDialog mixDialog = new MixDialog.Builder(this)
         })    
         .buildWithParent()    
     ...  
- .build(); mixDialog.create(); mixDialog.show();  
+    .build().show();  
 ```  
 Also, you can get CheckItem from the MixDialog instance.  
 * To get one of the single-check item, you can use `MixDialog#getSingleCheckItem(String, String)` with group name and text of the CheckItem, to get checked item from the single-check group you can use `MixDialog#getSingleCheckedItem(String)` with group name.  
@@ -197,7 +199,17 @@ if(checkGroup1_Item2 != null && checkGroup2_Item1 != null){
 	}
 }  
 ```  
-  
+#### Reusing Dialog
+You can easily reuse MixDialog with modifying existing parameters via new Builder. This allows you that not set all parameters again and again. Just create a new Builder from existing MixDialog and edit parameters via Builder.
+```java 
+Builder.fromMixDialog(mMixDialogInstance)
+    ...
+    .setTitle("New Title")
+    .setNeutralButtonText(null)
+    ...
+    .build().show();
+```
+
 Demo
  ----    
 You can find the demo application at [app](https://github.com/birfincankafein/MixDialog/blob/master/app)  directory. Demo app includes MixDialogs with all types of ItemGroup.  
