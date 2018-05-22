@@ -193,7 +193,6 @@ public class MixDialog {
         mLayoutParams_ItemGroup = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         mLayoutParams_ItemGroup.topMargin = (int) mParams.mContext.getResources().getDimension(R.dimen.margin_top_group);
 
-
         mLayoutParams_Items = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         mLayoutParams_Items.topMargin = (int) mParams.mContext.getResources().getDimension(R.dimen.margin_top_group_items);
 
@@ -308,7 +307,6 @@ public class MixDialog {
      * Create and add views for all KeyValueItemGroups.
      */
     private void createKeyValueGroupItems() {
-        LinearLayout.LayoutParams mLayoutParams_KeyValueItem = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         for (KeyValueItemGroup keyValueItemGroup : mParams.mKeyValueItemGroups.values()) {
             if (!keyValueItemGroup.mKeyValueItems.isEmpty()) {
                 keyValueItemGroup.attachedMixDialog = this;
@@ -343,10 +341,10 @@ public class MixDialog {
                     mLinearLayout_KeyValueItem.addView(mTextView_Key, mLayoutParams_TextViewKey);
                     mLinearLayout_KeyValueItem.addView(mTextView_Value, mLayoutParams_TextViewValue);
 
-                    mLinearLayout_KeyValueItemGroup.addView(mLinearLayout_KeyValueItem, mLayoutParams_KeyValueItem);
+                    mLinearLayout_KeyValueItemGroup.addView(mLinearLayout_KeyValueItem, mLayoutParams_Items);
                 }
 
-                mLinearLayout_InputItemContainer.addView(mLinearLayout_KeyValueItemGroup, mLayoutParams_ItemGroups);
+                mLinearLayout_KeyValueItemContainer.addView(mLinearLayout_KeyValueItemGroup, mLayoutParams_ItemGroups);
             }
         }
     }
